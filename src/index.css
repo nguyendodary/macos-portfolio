@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --menu-bar-height: 28px;
+  --dock-height: 72px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',
+    'Helvetica Neue', Arial, sans-serif;
+  user-select: none;
+  cursor: default;
+}
+
+/* Scrollbar — macOS style */
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 120, 120, 0.35);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(120, 120, 120, 0.6);
+}
+
+/* Wallpaper — Sonoma/Ventura inspired multi-layer gradient */
+.wallpaper {
+  background:
+    radial-gradient(ellipse 120% 80% at 20% 90%, rgba(120, 40, 200, 0.7) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 60% at 80% 10%, rgba(50, 120, 230, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 80% at 60% 50%, rgba(220, 100, 120, 0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 70% at 10% 30%, rgba(60, 200, 180, 0.3) 0%, transparent 50%),
+    linear-gradient(145deg,
+      #0d0221 0%,
+      #1a0533 12%,
+      #2d1b69 28%,
+      #6b3fa0 42%,
+      #c94b7c 56%,
+      #e8795a 68%,
+      #f5c566 78%,
+      #7dd3c0 88%,
+      #3b82f6 100%
+    );
+  background-size: 100% 100%;
+  position: relative;
+}
+
+.wallpaper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle 300px at 25% 75%, rgba(168, 85, 247, 0.15), transparent),
+    radial-gradient(circle 200px at 75% 25%, rgba(96, 165, 250, 0.12), transparent),
+    radial-gradient(circle 250px at 55% 45%, rgba(251, 146, 60, 0.08), transparent);
+  animation: wallpaperGlow 20s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes wallpaperGlow {
+  0% { opacity: 0.8; transform: scale(1) translate(0, 0); }
+  50% { opacity: 1; transform: scale(1.05) translate(1%, -1%); }
+  100% { opacity: 0.85; transform: scale(1.02) translate(-1%, 0.5%); }
+}
+
+/* Window transitions */
+.window-transition {
+  transition: box-shadow 0.2s ease, opacity 0.15s ease;
+}
+
+/* Traffic light hover reveal */
+.traffic-lights:hover .traffic-icon {
+  opacity: 1 !important;
+}
+
+/* Menu bar hover */
+.menu-item-hover:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Dock tooltip */
+.dock-tooltip {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(30, 30, 30, 0.9);
+  backdrop-filter: blur(16px);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+}
+.dock-item:hover .dock-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Safari-style scrollbar for apps */
+.app-scroll::-webkit-scrollbar { width: 6px; }
+.app-scroll::-webkit-scrollbar-track { background: transparent; }
+.app-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+.app-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* File row hover */
+.file-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Sidebar item */
+.sidebar-item {
+  transition: background 0.1s ease;
+}
+.sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.sidebar-item.active {
+  background: rgba(0, 122, 255, 0.2);
+}
